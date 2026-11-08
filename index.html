@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZEUS AUTO JOINER</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#090512;color:white;
+ font-family:Arial,sans-serif;
+ text-align:center;
+}
+header{
+ padding:35px 10px;
+ background:linear-gradient(120deg,#16002d,#7800ff);
+}
+h1{font-size:36px;color:#fff}
+main{max-width:700px;margin:25px auto;padding:15px}
+.card{
+ background:#190d2c;
+ border:1px solid #9b42ff;
+ border-radius:16px;
+ padding:24px;margin:20px 0;
+}
+input{
+ width:90%;padding:13px;margin:10px;
+ background:#0b0714;color:white;
+ border:1px solid #923cff;
+ border-radius:8px;
+}
+button{
+ padding:13px 22px;margin:8px;
+ border:0;border-radius:9px;
+ background:#8500ff;color:white;
+ font-weight:bold;cursor:pointer;
+}
+button:hover{background:#ae55ff}
+li{padding:8px;text-align:left}
+.status{color:#cda2ff}
+</style>
+</head>
+<body>
+
+<header>
+<h1>⚡ ZEUS AUTO JOINER ⚡</h1>
+<p>STEAL A BRAINROT</p>
+<p>👑 ALWAYS FIRST 👑</p>
+</header>
+
+<main>
+
+<div class="card">
+<h2>🔍 BRAINROT SCANNER</h2>
+<p class="status" id="status">
+Scannerul așteaptă conectarea unei surse de date.
+</p>
+<button onclick="notifyMe()">ACTIVEAZĂ NOTIFICĂRILE</button>
+</div>
+
+<div class="card">
+<h2>👑 BRAINROT LIST</h2>
+<input id="brainrot" placeholder="Numele Brainrot-ului">
+<button onclick="addBrainrot()">ADD BRAINROT</button>
+<ul id="list"></ul>
+</div>
+
+<div class="card">
+<h2>🚀 JOIN SERVER</h2>
+<input id="server" placeholder="Link server Roblox">
+<button onclick="joinServer()">JOIN SERVER</button>
+</div>
+
+<div class="card">
+<h2>⚡ ZEUS STATUS</h2>
+<p>Website: ONLINE</p>
+<p>Game: Steal a Brainrot</p>
+<p>Auto detection: NOT CONNECTED</p>
+</div>
+
+</main>
+
+<script>
+function addBrainrot(){
+ const input=document.getElementById("brainrot");
+ const name=input.value.trim();
+ if(!name)return;
+
+ const li=document.createElement("li");
+ li.textContent="👑 "+name;
+ document.getElementById("list").appendChild(li);
+ input.value="";
+}
+
+async function notifyMe(){
+ if(!("Notification" in window)){
+ alert("Browserul nu acceptă notificări.");
+ return;
+ }
+ const permission=await Notification.requestPermission();
+ if(permission==="granted"){
+ document.getElementById("status").textContent=
+ "Notificările browserului sunt activate!";
+ new Notification("ZEUS AUTO JOINER",{
+ body:"Notificările sunt pregătite!"
+ });
+ }
+}
+
+function joinServer(){
+ const link=document.getElementById("server").value.trim();
+ try{
+ const url=new URL(link);
+ if(url.protocol!=="https:" ||
+ !["roblox.com","www.roblox.com"].includes(url.hostname)){
+ throw new Error();
+ }
+ window.open(url.href,"_blank");
+ }catch(e){
+ alert("Introdu un link Roblox valid!");
+ }
+}
+</script>
+
+</body>
+</html>
