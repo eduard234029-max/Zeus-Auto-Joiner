@@ -1,0 +1,12 @@
+{
+  "name": "zeus-auto-joiner",
+  "version": "1.0.0",
+  "description": "ZEUS AUTO JOINER server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
